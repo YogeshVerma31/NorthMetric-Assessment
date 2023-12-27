@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:testing_assessment/data/model/products_model.dart';
 import 'package:testing_assessment/data/repository/auth/product_repository_impl.dart';
@@ -23,6 +21,13 @@ class ProductsProvider extends ChangeNotifier {
   setSelectedCard(bool value, int index) {
     _productList[index].isSelected = value;
     notifyListeners();
+  }
+
+  String? getSelectedCard() {
+    var selectedCard =
+        _productList.where((element) => element.isSelected == true);
+    var comma = selectedCard.map((e) => e.name).join(',');
+    return comma.toString();
   }
 
   List<ProductsModelData> get productList => _productList;

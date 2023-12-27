@@ -7,6 +7,7 @@ import '../../mixin/base_page_mixin.dart';
 import '../../utils/color.dart';
 import '../../utils/size_config.dart';
 import '../../utils/strings.dart';
+import '../../utils/utils.dart';
 import '../base/base_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -113,7 +114,17 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
           Expanded(
               child: CustomButton(
             text: 'Next',
-            onPressed: () {},
+            onPressed: () {
+              context.read<ProductsProvider>().getSelectedCard() == ''
+                  ? showSnackBar(
+                      context,
+                      Strings.pleaseSelectAtleastOneProductToSave +
+                          context.read<ProductsProvider>().getSelectedCard()!)
+                  : showSnackBar(
+                      context,
+                      Strings.successfullySaved +
+                          context.read<ProductsProvider>().getSelectedCard()!);
+            },
           ))
         ],
       ),
