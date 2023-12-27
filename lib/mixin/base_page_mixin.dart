@@ -47,7 +47,7 @@ mixin BaseScreen<Page extends BasePageScreen> on BasePageScreenState<Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldStateKey(),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Colors.white,
       appBar: isAppBarReq == true
           ? AppBar(
               titleSpacing: 0,

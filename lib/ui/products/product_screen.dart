@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testing_assessment/data/model/products_model.dart';
 import 'package:testing_assessment/provider/product_provider.dart';
 import 'package:testing_assessment/ui/products/widget/card_widget.dart';
 import 'package:testing_assessment/utils/extensions.dart';
@@ -48,16 +47,21 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                Strings.skip,
-                textAlign: TextAlign.right,
-                style: const TextStyle().fontWeight500(18),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  Strings.skip,
+                  textAlign: TextAlign.right,
+                  style: const TextStyle().fontWeight600(15),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -68,7 +72,7 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
           ),
           _getSubTitle(),
           const SizedBox(
-            height: 5,
+            height: 25,
           ),
           Expanded(
             child: Consumer<ProductsProvider>(builder: (context, provider, _) {
@@ -112,19 +116,24 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
             ),
           )),
           Expanded(
-              child: CustomButton(
-            text: 'Next',
-            onPressed: () {
-              context.read<ProductsProvider>().getSelectedCard() == ''
-                  ? showSnackBar(
-                      context,
-                      Strings.pleaseSelectAtleastOneProductToSave +
-                          context.read<ProductsProvider>().getSelectedCard()!)
-                  : showSnackBar(
-                      context,
-                      Strings.successfullySaved +
-                          context.read<ProductsProvider>().getSelectedCard()!);
-            },
+              child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: CustomButton(
+              text: 'Next',
+              onPressed: () {
+                context.read<ProductsProvider>().getSelectedCard() == ''
+                    ? showSnackBar(
+                        context,
+                        Strings.pleaseSelectAtleastOneProductToSave +
+                            context.read<ProductsProvider>().getSelectedCard()!)
+                    : showSnackBar(
+                        context,
+                        Strings.successfullySaved +
+                            context
+                                .read<ProductsProvider>()
+                                .getSelectedCard()!);
+              },
+            ),
           ))
         ],
       ),
@@ -132,33 +141,41 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
   }
 
   _listOfProducts(ProductsProvider provider) {
-    return GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 5.0,
-          crossAxisSpacing: 1.0,
-        ),
-        itemCount: provider.productList.length,
-        itemBuilder: (context, index) {
-          return CardWidget(
-            data: provider.productList[index],
-            index: index,
-          );
-        });
+    return Center(
+      child: Scrollbar(
+        thickness: 4,
+        radius: const Radius.circular(10),
+        child: GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10.0,
+              childAspectRatio: .87,
+              crossAxisSpacing: 6.0,
+            ),
+            itemCount: provider.productList.length,
+            itemBuilder: (context, index) {
+              return CardWidget(
+                data: provider.productList[index],
+                index: index,
+              );
+            }),
+      ),
+    );
   }
 
   _getTitle() {
     return Text(
       Strings.title,
-      style: const TextStyle().fontWeight600(18),
+      textAlign: TextAlign.start,
+      style: const TextStyle().fontWeight600(16),
     );
   }
 
   _getSubTitle() {
     return Text(
       Strings.subtitle,
-      style: const TextStyle().fontWeight500(14, fontColor: Colors.black87),
+      style: const TextStyle().fontWeight500(13, fontColor: Colors.black87),
     );
   }
 

@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.circular(10),
+        borderRadius: BorderRadiusDirectional.circular(7),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +39,7 @@ class CustomButton extends StatelessWidget {
                     ? primaryColor
                     : Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 16),
+                fontSize: 13),
           ),
         ],
       ),
