@@ -58,7 +58,7 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
                 Text(
                   Strings.skip,
                   textAlign: TextAlign.right,
-                  style: const TextStyle().fontWeight600(15),
+                  style: const TextStyle().fontWeight500(15),
                 ),
               ],
             ),
@@ -175,7 +175,7 @@ class _ProductScreenState extends BasePageScreenState<ProductScreen>
   _getSubTitle() {
     return Text(
       Strings.subtitle,
-      style: const TextStyle().fontWeight500(13, fontColor: Colors.black87),
+      style: const TextStyle().fontWeight500(13, fontColor: Color(0xFF585245)),
     );
   }
 

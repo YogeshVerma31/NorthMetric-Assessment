@@ -34,7 +34,7 @@ class CardWidget extends StatelessWidget {
                       color:
                           data.isSelected ? borderColor : cardBackgroundColor,
                       width: 1.5),
-                  borderRadius: BorderRadius.circular(7)),
+                  borderRadius: BorderRadius.circular(8)),
               // color of grid items
               child: Stack(
                 children: [
